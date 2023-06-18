@@ -3,9 +3,10 @@ import threading
 import tkinter
 import tkinter.scrolledtext
 from tkinter import simpledialog
+from PIL import Image, ImageTk
 
 HOST = socket.gethostbyname(socket.gethostname())
-PORT = 1234
+PORT = 12345
 
 class Client:
     def __init__(self, host, port):
@@ -90,13 +91,19 @@ def button_clicked():
     window.destroy()
 
 window = tkinter.Tk()
-window.title("GUI Chat")
-window.geometry("400x300")
+window.title("Simple Chat")
+window.geometry("400x600")
+window.configure(bg='#666666')
+window.resizable(0,0)
 
-label = tkinter.Label(window, text="SimpleChat", font=("Arial", 24))
-label.pack(pady=50)
+logo = Image.open("images/simplechat.png")
+logo = logo.resize((300, 150))
+logo = ImageTk.PhotoImage(logo)
 
-button = tkinter.Button(window, text="MULAI", command=button_clicked)
-button.pack()
+label = tkinter.Label(window, image=logo, bg="#666666")
+label.place(x=50, y=120)
+
+button = tkinter.Button(window, text="MULAI", command=button_clicked, bg="#FFFFFF", fg="black", width = 10, height=2, font=("Arial", 10, "bold"))
+button.place(x=165, y=300)
 
 window.mainloop()
