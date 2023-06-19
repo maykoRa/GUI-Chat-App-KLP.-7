@@ -50,12 +50,3 @@ def receive():
 
 print("Server running...")
 receive()
-
-
-
-
-
-
-
-
-
