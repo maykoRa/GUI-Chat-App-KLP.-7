@@ -16,8 +16,8 @@ window.geometry("400x600")
 window.configure(bg='#666666')
 window.resizable(0, 0)
 
-logo = Image.open("images/simplechat.png")
-logo = logo.resize((300, 150))
+logo = Image.open("images/WeChat.png")
+logo = logo.resize((300, 200))
 logo = ImageTk.PhotoImage(logo)
 
 font= "Arial"
@@ -93,24 +93,37 @@ class Client:
         self.win.minsize(400, 600)
         self.win.maxsize(400, 600)
 
-        self.chat_label = tkinter.Label(self.win, text="SimpleChat", bg="black", fg="white", width=450, height=3)
-        self.chat_label.config(font=("Arial", 12))
+        self.chat_label = tkinter.Label(self.win, text="SimpleChat", bg="black", fg="#F9DF30", width=100, height=2)
+        self.chat_label.config(font=("Comic Sans MS", 20 , "bold"))
         self.chat_label.pack(padx=0, pady=0)
 
         if int(size) == 8:
-            height = 27
+            height = 25
         elif int(size) == 10:
-            height = 23
+            height = 21
         elif int(size) == 12:
-            height = 19
+            height = 17
         elif int(size) == 14:
-            height = 16        
+            height = 15        
 
         self.text_area = tkinter.scrolledtext.ScrolledText(self.win,font=(font, size, "bold"), height=height)
-        self.text_area.pack(padx=10, pady=15)
+        self.text_area.pack(padx=10, pady=5)
         self.text_area.config(state='disabled')
 
-        self.input_area = tkinter.Text(self.win, height=3, width=40, font=(font, size, "bold"))
+        self.chat_label = tkinter.Label(self.win, text=self.nickname ,bg="#666666", fg="#FFFFFF", height=1)
+        self.chat_label.config(font=("Comic Sans MS", 13 , "bold"))
+        self.chat_label.pack(padx=5, pady=5)
+
+        if int(size) == 8:
+            width = 47
+        elif int(size) == 10:
+            width = 40
+        elif int(size) == 12:
+            width = 33
+        elif int(size) == 14:
+            width = 27
+
+        self.input_area = tkinter.Text(self.win, height=2, width=width, font=(font, size, "bold"))
         self.input_area.pack(padx=15, pady=5)
 
         self.send_button = tkinter.Button(self.win, text="Send", command=self.send_message)
@@ -160,7 +173,7 @@ class Client:
 
 def button_clicked():
     client = Client(HOST, PORT)
-    client = Client(HOST, PORT)
+    # client = Client(HOST, PORT)
     window.destroy()
 
 label = tkinter.Label(window, image=logo, bg="#666666")
@@ -168,6 +181,6 @@ label.place(x=50, y=120)
 
 button = tkinter.Button(window, text="MULAI", command=button_clicked, bg="#FFFFFF", fg="black", width=10, height=2,
                         font=("Arial", 10, "bold"))
-button.place(x=165, y=300)
+button.place(x=165, y=350)
 
 window.mainloop()
