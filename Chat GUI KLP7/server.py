@@ -3,6 +3,7 @@ import threading
 
 HOST = socket.gethostbyname(socket.gethostname())
 PORT = 12345
+print("IP Address: " + HOST)
 
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server.bind((HOST, PORT))
@@ -19,7 +20,7 @@ def handle(client):
     while True:
         try:
             message = client.recv(1024)
-            print(f"{nicknames[clients.index(client)]} says: {message.decode('utf-8')}")
+            print(f"{message.decode('utf-8')}")
             broadcast(message)
         except:
             index = clients.index(client)
