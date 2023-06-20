@@ -10,17 +10,18 @@ import tkinter.font as tkfont
 window = tkinter.Tk()
 window.title("Simple Chat")
 window.geometry("400x600")
-window.configure(bg='#666666')
+window.configure(bg='#0f1b24')
 window.resizable(0, 0)
 
 logo = Image.open("images/WeChat.png")
 logo = logo.resize((300, 200))
 logo = ImageTk.PhotoImage(logo)
 
-label = tkinter.Label(window, image=logo, bg="#666666")
+label = tkinter.Label(window, image=logo, bg="#0f1b24")
 label.place(x=50, y=100)
 
-ip_address_label = tkinter.Label(window, text="IP ADDRESS", font=("Arial", 12, "bold"), bg="#666666", justify="center")
+#IP ADDRESS
+ip_address_label = tkinter.Label(window, text="IP ADDRESS", font=("Arial", 12, "bold"), bg="#0f1b24",fg="white", justify="center")
 ip_address_label.place(x=152, y=320)
 
 input_field = tkinter.Entry(window, width=20, font=("Times New Roman", 12,), justify="center")
@@ -31,8 +32,9 @@ size= "10"
 
 PORT = 12345
 
+#Scene Setting
 def toggle_win():
-    f1 = Frame(window, width=300, height=600, bg='#12c4c0')
+    f1 = Frame(window, width=300, height=600, bg='#284352')
     f1.place(x=0, y=0)
 
     def dele():
@@ -45,27 +47,28 @@ def toggle_win():
         f1.destroy()
 
     global img2
-    img2 = ImageTk.PhotoImage(Image.open("images/close.png"))
+    img2 = ImageTk.PhotoImage(Image.open("images/closeButton.png"))
 
-    Button(f1,image=img2, border=0, command=dele, bg='#12c4c0', activebackground='#12c4c0').place(x=5, y=10)
+    Button(f1,image=img2, border=0, command=dele, activebackground="#284352", width=30, height=30).place(x=5, y=10)
 
-    label = tkinter.Label(f1, text="Settings", bg="#12c4c0", font=("Arial", 25, "bold"))
+    label = tkinter.Label(f1, text="Settings", bg="#284352", font=("Arial", 25, "bold"))
     label.place(x=70, y=35)
 
-    label1 = tkinter.Label(f1, text="Font", bg="#12c4c0", font=("Arial", 10, "bold"))
+    label1 = tkinter.Label(f1, text="Font", bg="#284352", font=("Arial", 10, "bold"))
     label1.place(x=50, y=100)
 
     # fonts = sorted(tkfont.families())
     combo_box1 = ttk.Combobox(f1, values=['Arial', 'Times New Roman', 'Calibri', 'Courier New', 'Georgia', 'Roboto'])
     combo_box1.place(x=100, y=100)   
 
-    label2 = tkinter.Label(f1, text="Size", bg="#12c4c0", font=("Arial", 10, "bold"))
+    label2 = tkinter.Label(f1, text="Size", bg="#284352", font=("Arial", 10, "bold"))
     label2.place(x=50, y=130)
 
     combo_box2 = ttk.Combobox(f1, values=['8', '10', '12', '14'])
     combo_box2.place(x=100, y=130)  
 
-    button = tkinter.Button(f1, text="OK", command=on_button_ok)
+    button = tkinter.Button(f1, text="OK", command=on_button_ok, bg="#347295", fg="white", width=5, height=1,
+                        font=("Arial", 10, "bold"))
     button.config(font=("Arial", 12))
     button.place(x=100, y= 160)
 
@@ -74,7 +77,7 @@ img1 = ImageTk.PhotoImage(Image.open("images/open.png"))
 button = Button(window, image=img1, command=toggle_win, border=0, bg='#262626', activebackground='#262626').place(x=5, y=10)
 
 class Client:
-    def _init_(self, host, port):
+    def __init__(self, host, port):
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.sock.connect((host, port))
 
@@ -97,11 +100,11 @@ class Client:
 
     def chat_scene(self):
         self.win = tkinter.Tk()
-        self.win.configure(bg="#666666")
+        self.win.configure(bg="#284352")
         self.win.minsize(400, 600)
         self.win.maxsize(400, 600)
 
-        self.chat_label = tkinter.Label(self.win, text="SimpleChat", bg="black", fg="#F9DF30", width=100, height=2)
+        self.chat_label = tkinter.Label(self.win, text="SimpleChat", bg="#0f1b24", fg="white", width=100, height=2)
         self.chat_label.config(font=("Comic Sans MS", 20 , "bold"))
         self.chat_label.pack(padx=0, pady=0)
 
@@ -118,7 +121,7 @@ class Client:
         self.text_area.pack(padx=10, pady=5)
         self.text_area.config(state='disabled')
 
-        self.chat_label = tkinter.Label(self.win, text=self.nickname ,bg="#666666", fg="#FFFFFF", height=1)
+        self.chat_label = tkinter.Label(self.win, text=self.nickname ,bg="#284352", fg="#FFFFFF", height=1)
         self.chat_label.config(font=("Comic Sans MS", 13 , "bold"))
         self.chat_label.pack(padx=5, pady=5)
 
@@ -134,7 +137,8 @@ class Client:
         self.input_area = tkinter.Text(self.win, height=2, width=width, font=(font, size, "bold"))
         self.input_area.pack(padx=15, pady=5)
 
-        self.send_button = tkinter.Button(self.win, text="Send", command=self.send_message)
+        self.send_button = tkinter.Button(self.win, text="Send", command=self.send_message, bg="#347295", fg="white", width=7, height=1,
+                        font=("Arial", 10, "bold"))
         self.send_button.config(font=("Arial", 12))
         self.send_button.pack(padx=10, pady=5)
 
@@ -182,11 +186,12 @@ class Client:
 def button_clicked():
     global HOST
     HOST = input_field.get()
-    client = Client(HOST, PORT)
+    # client = Client(HOST, PORT)
     client = Client(HOST, PORT)
     window.destroy()
 
-button = tkinter.Button(window, text="MULAI", command=button_clicked, bg="#FFFFFF", fg="black", width=10, height=2,
+#Button Mulai
+button = tkinter.Button(window, text="MULAI", command=button_clicked, bg="#347295", fg="white", width=10, height=2,
                         font=("Arial", 10, "bold"))
 button.place(x=160, y=420)
 
