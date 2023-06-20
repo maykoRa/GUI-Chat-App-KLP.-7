@@ -44,7 +44,7 @@ def receive():
 
         print(f"Nickname client yang terhubung : {nicknames}")
         broadcast(f"{nickname} bergabung ke dalam room chat!\n".encode('utf-8'))
-        client.send("Connected to the server".encode('utf-8'))
+        client.send("Connected to the server\n".encode('utf-8'))
 
         thread = threading.Thread(target=handle, args=(client,))
         thread.start()
