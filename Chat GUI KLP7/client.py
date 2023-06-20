@@ -74,7 +74,7 @@ img1 = ImageTk.PhotoImage(Image.open("images/open.png"))
 button = Button(window, image=img1, command=toggle_win, border=0, bg='#262626', activebackground='#262626').place(x=5, y=10)
 
 class Client:
-    def _init_(self, host, port):
+    def __init__(self, host, port):
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.sock.connect((host, port))
 
