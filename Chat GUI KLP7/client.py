@@ -51,17 +51,17 @@ def toggle_win():
 
     Button(f1,image=img2, border=0, command=dele, activebackground="#284352", width=30, height=30).place(x=5, y=10)
 
-    label = tkinter.Label(f1, text="Settings", bg="#284352", font=("Arial", 25, "bold"))
+    label = tkinter.Label(f1, text="Settings", bg="#284352", font=("Arial", 25, "bold") , fg="white")
     label.place(x=70, y=35)
 
-    label1 = tkinter.Label(f1, text="Font", bg="#284352", font=("Arial", 10, "bold"))
+    label1 = tkinter.Label(f1, text="Font", bg="#284352", font=("Arial", 10, "bold") , fg="white")
     label1.place(x=50, y=100)
 
     # fonts = sorted(tkfont.families())
     combo_box1 = ttk.Combobox(f1, values=['Arial', 'Times New Roman', 'Calibri', 'Courier New', 'Georgia', 'Roboto'])
     combo_box1.place(x=100, y=100)   
 
-    label2 = tkinter.Label(f1, text="Size", bg="#284352", font=("Arial", 10, "bold"))
+    label2 = tkinter.Label(f1, text="Size", bg="#284352", font=("Arial", 10, "bold") , fg="white")
     label2.place(x=50, y=130)
 
     combo_box2 = ttk.Combobox(f1, values=['8', '10', '12', '14'])
